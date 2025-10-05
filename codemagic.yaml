@@ -14,6 +14,10 @@ workflows:
           xcodegen generate
           ls -la
           test -d RouteOptimizer.xcodeproj
+      - name: Show Swift file (first 400 lines)
+        script: |
+          set -euxo pipefail
+          nl -ba RouteOptimizerApp.swift | sed -n '1,400p'
       - name: Build .app (no codesign)
         script: |
           set -euxo pipefail
@@ -46,3 +50,4 @@ workflows:
     artifacts:
       - out/RouteOptimizer.ipa
       - build/Build/Products/Release-iphoneos/RouteOptimizer.app
+
