@@ -18,7 +18,13 @@ workflows:
         script: |
           set -euxo pipefail
           rm -rf build
-          xcodebuild -project RouteOptimizer.xcodeproj             -scheme RouteOptimizer             -configuration Release             -sdk iphoneos             -destination 'generic/platform=iOS'             -derivedDataPath build             clean build CODE_SIGNING_ALLOWED=NO
+          xcodebuild -project RouteOptimizer.xcodeproj \
+            -scheme RouteOptimizer \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build \
+            clean build CODE_SIGNING_ALLOWED=NO
           APP_DIR="build/Build/Products/Release-iphoneos/RouteOptimizer.app"
           APP_BIN="$APP_DIR/RouteOptimizer"
           echo "== Verify .app =="
