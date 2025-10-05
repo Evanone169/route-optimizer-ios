@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES">
-    <scenes>
-        <scene sceneID="0">
-            <objects>
-                <viewController id="VC" customClass="UIViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="VIEW">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <subviews>
-                            <label id="LBL">
-                                <rect key="frame" x="95" y="400" width="200" height="44"/>
-                                <string key="text">RouteOptimizer</string>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FR" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
-    </scenes>
+  <scenes>
+    <scene sceneID="scene">
+      <objects>
+        <viewController id="vc" sceneMemberID="viewController">
+          <view key="view" contentMode="scaleToFill" id="view">
+            <rect key="frame" x="0" y="0" width="390" height="844"/>
+            <subviews>
+              <label id="label">
+                <rect key="frame" x="95" y="400" width="200" height="44"/>
+                <string key="text">RouteOptimizer</string>
+              </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+          </view>
+        </viewController>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="fr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+      </objects>
+    </scene>
+  </scenes>
 </document>
