@@ -1,0 +1,42 @@
+workflows:
+  ios-xcodegen:
+    name: iOS (XcodeGen) - unsigned IPA
+    environment:
+      xcode: latest
+    scripts:
+      - name: Install XcodeGen
+        script: |
+          set -e
+          brew install xcodegen
+      - name: Generate Xcode project
+        script: |
+          set -euxo pipefail
+          xcodegen generate
+          ls -la
+          test -d RouteOptimizer.xcodeproj
+      - name: Build .app (no codesign)
+        script: |
+          set -euxo pipefail
+          rm -rf build
+          xcodebuild -project RouteOptimizer.xcodeproj             -scheme RouteOptimizer             -configuration Release             -sdk iphoneos             -destination 'generic/platform=iOS'             -derivedDataPath build             clean build CODE_SIGNING_ALLOWED=NO
+          APP_DIR="build/Build/Products/Release-iphoneos/RouteOptimizer.app"
+          APP_BIN="$APP_DIR/RouteOptimizer"
+          echo "== Verify .app =="
+          test -d "$APP_DIR"
+          ls -la "$APP_DIR"
+          test -f "$APP_BIN"
+          file "$APP_BIN" || true
+          du -sh "$APP_DIR" || true
+      - name: Package unsigned IPA
+        script: |
+          set -euxo pipefail
+          rm -rf out && mkdir -p out/Payload
+          cp -R build/Build/Products/Release-iphoneos/RouteOptimizer.app out/Payload/
+          (cd out && zip -qry RouteOptimizer.ipa Payload)
+          echo "== IPA listing =="
+          unzip -l out/RouteOptimizer.ipa | sed -n '1,200p'
+          echo "== IPA size =="
+          stat -f%z out/RouteOptimizer.ipa || true
+    artifacts:
+      - out/RouteOptimizer.ipa
+      - build/Build/Products/Release-iphoneos/RouteOptimizer.app

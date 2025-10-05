@@ -1,0 +1,24 @@
+name: RouteOptimizer
+options:
+  deploymentTarget:
+    iOS: "15.0"
+targets:
+  RouteOptimizer:
+    type: application
+    platform: iOS
+    sources:
+      - path: .
+        includes:
+          - RouteOptimizerApp.swift
+    resources:
+      - path: LaunchScreen.storyboard
+      - path: bigpad.dat
+    info:
+      path: Info.plist
+    settings:
+      PRODUCT_NAME: RouteOptimizer
+      PRODUCT_BUNDLE_IDENTIFIER: com.example.RouteOptimizer
+      SWIFT_VERSION: 5.0
+      TARGETED_DEVICE_FAMILY: "1,2"
+    scheme:
+      testTargets: []
